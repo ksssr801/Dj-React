@@ -1,0 +1,57 @@
+export const storeProducts = [
+    {
+        id: 1,
+        title: "Realme 3",
+        img: "img/realme-3.png",
+        price: 9999,
+        company: "Realme",
+        info: "Information for Realme 3.",
+        inCart: false,
+        count: 0,
+        total: 0,
+    },
+    {
+        id: 2,
+        title: "Redmi Note 7",
+        img: "img/redmi-note-7.png",
+        price: 11999,
+        company: "Xiaomi",
+        info: "Information for Redmi Note 7.",
+        inCart: false,
+        count: 0,
+        total: 0,
+    },
+    {
+        id: 3,
+        title: "Samsung GalaxyA50",
+        img: "img/samsung-galaxy-a50.png",
+        price: 22990,
+        company: "Samsung",
+        info: "Information for Samsung Galaxy A50.",
+        inCart: false,
+        count: 0,
+        total: 0,
+    },
+    {
+        id: 4,
+        title: "One Plus 6T",
+        img: "img/one-plus-6t.png",
+        price: 32999,
+        company: "One Plus",
+        info: "Information for One Plus 6T.",
+        inCart: false,
+        count: 0,
+        total: 0,
+    }
+];
+
+export const detailProduct = {
+    id: 4,
+    title: "One Plus 6T",
+    img: "img/one-plus-6t.png",
+    price: 32999,
+    info: "Information for One Plus 6T.",
+    inCart: false,
+    count: 0,
+    total: 0,
+}

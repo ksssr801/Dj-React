@@ -8,9 +8,10 @@ import Product from './product';
 export default class ProductList extends Component {
     render() {
         return (
+            // Need to read about React Fragment
             <React.Fragment>
                 <div className="py-5">
-                    <div className="container">
+                    <div className="container ">
                         <ProductTitle name="our" prodTitle="products" />
                         <div className="row">
                             <ProductConsumer>

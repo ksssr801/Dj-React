@@ -28,11 +28,15 @@ body{
 }
 
 .home-style-icon{
-    color: var(--lightGreen);
+    color: gold;
     font-size: 1.8rem !important;
 }
 
 .home-style{
     color: var(--lightGreen);
-    font-size: 1.6rem !important;
+    font-size: 2rem !important;
+}
+
+.store-footer{
+    background: lavender;
 }

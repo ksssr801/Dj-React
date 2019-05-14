@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import Product from './components/product';
 
 export const BtnContainer = styled.button`
 text-transform:capitalize;
@@ -89,4 +88,16 @@ export const ProductWrapper = styled.div`
     color: var(--mainBlue);
     cursor: pointer;
 }
+`;
+
+export const ModalContainer = styled.div`
+position: fixed;
+top: 7rem;
+bottom: 3rem;
+left: 34rem;
+right: 34rem;
+background: rgba(180,180,180,180);
+display: flex;
+align-items: center;
+justify-content: center;
 `;

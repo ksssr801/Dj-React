@@ -9,6 +9,7 @@ import Details from './components/details';
 import Cart from './components/cart';
 // import Product from './components/product';
 import Default from './components/default';
+import Modal from './components/modal';
 
 // Need to read about Switch, Route
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
                   <Route path="/cart" component={Cart} />
                   <Route component={Default} />
                 </Switch>
+                <Modal />
                 <FooterBar />
             </React.Fragment>
         );

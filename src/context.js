@@ -7,7 +7,7 @@ class ProductProvider extends Component {
     state = {
         products: [],
         detailProduct: detailProduct,
-        cart: storeProducts,
+        cart: [],
         modalOpen: false,
         modalProduct : detailProduct,
         cartSubTotal: 0,
@@ -77,7 +77,16 @@ class ProductProvider extends Component {
     };
 
     removeItem = (id) => {
-        console.log('item removed');
+        let tempCart = this.state.cart;
+        tempCart.map(item => {
+            var index = tempCart.indexOf(item)
+            if (item.id == id) {
+                tempCart.splice(index, 1)
+            }
+        })
+        this.setState(() => {
+            return {cart: tempCart};
+        })
     };
 
     clearCart = (id) => {

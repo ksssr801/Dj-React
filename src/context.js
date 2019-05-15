@@ -16,7 +16,7 @@ class ProductProvider extends Component {
     }
     // Need to read about componentDidMount()
     componentDidMount() {
-        this.setProducts()
+        this.setProducts();
     }
     setProducts = () => {
         let tempProducts = [];
@@ -27,7 +27,7 @@ class ProductProvider extends Component {
         // Need to read about State
         this.setState(() => {
             return {products: tempProducts};
-        })
+        });
     };
 
     getItem = (id) => {
@@ -43,6 +43,8 @@ class ProductProvider extends Component {
     };
 
     addToCart = (id) => {
+        var tempSubTotal = this.state.cartSubTotal;
+        var tempTax = this.state.cartTax;
         let tempProducts = [...this.state.products];
         const index = tempProducts.indexOf(this.getItem(id))
         const product = tempProducts[index];
@@ -50,48 +52,127 @@ class ProductProvider extends Component {
         product.count += 1;
         var price = product.price;
         product.total = price * product.count;
+        tempSubTotal = tempSubTotal + product.total;
+        tempTax = tempTax + product.tax;
+        var finalTotal = tempSubTotal + tempTax;
         this.setState(() => {
-            return {products: tempProducts, cart: [...this.state.cart, product]};
-        },() => {console.log(this.state)});
+            return {
+                products: tempProducts, 
+                cart: [...this.state.cart, product], 
+                cartSubTotal: tempSubTotal,
+                cartTax: tempTax,
+                cartTotal: finalTotal, 
+            };
+        });
     };
 
     openModal = (id) => {
         const product = this.getItem(id);
         this.setState(() => {
             return {modalOpen: true, modalProduct: product};
-        })
+        });
     };
 
     closeModal = () => {
         this.setState(() => {
             return {modalOpen: false};
-        })
+        });
     };
     
     increment = (id) => {
-        console.log('this is increment method');
+        let finalTotal = 0;
+        let tempSubTotal = this.state.cartSubTotal;
+        let tempTax = this.state.cartTax;
+        let tempCart = this.state.cart;
+        tempCart.map(item => {
+            if (item.id == id) {
+                item.count += 1;
+                item.total = item.total + item.price;
+                tempSubTotal = tempSubTotal + item.price;
+                tempTax = tempTax + item.tax;
+                finalTotal = tempSubTotal + tempTax;
+            };
+        });
+        this.setState(() => {
+            return {
+                cart: tempCart,
+                cartSubTotal: tempSubTotal,
+                cartTax: tempTax,
+                cartTotal: finalTotal,
+            };
+        });
     };
 
     decrement = (id) => {
-        console.log('this is decrement method');
+        let finalTotal = 0;
+        let tempSubTotal = this.state.cartSubTotal;
+        let tempTax = this.state.cartTax;
+        let tempCart = this.state.cart;
+        tempCart.map(item => {
+            if (item.id == id) {
+                if (item.count == 0) {
+                    return;
+                }
+                else {
+                    item.count -= 1;
+                    item.total = item.total - item.price;    
+                    tempSubTotal = tempSubTotal - item.price;
+                    tempTax = tempTax - item.tax;
+                    finalTotal = tempSubTotal + tempTax;
+                }
+            };
+        });
+        this.setState(() => {
+            return {
+                cart: tempCart,
+                cartSubTotal: tempSubTotal,
+                cartTax: tempTax,
+                cartTotal: finalTotal,
+            };
+        });
     };
 
     removeItem = (id) => {
+        let finalTotal = 0;
+        let tempSubTotal = this.state.cartSubTotal;
+        let tempTax = this.state.cartTax;
         let tempCart = this.state.cart;
         tempCart.map(item => {
             var index = tempCart.indexOf(item)
             if (item.id == id) {
-                tempCart.splice(index, 1)
-            }
-        })
+                tempSubTotal = tempSubTotal - (item.count * item.price);
+                tempTax = tempTax - (item.count * item.tax);
+                item.count = 0;
+                item.inCart = false;
+                tempCart.splice(index, 1);
+                finalTotal = tempSubTotal + tempTax;
+            };
+        });
         this.setState(() => {
-            return {cart: tempCart};
-        })
+            return {
+                cart: tempCart,
+                cartSubTotal: tempSubTotal,
+                cartTax: tempTax,
+                cartTotal: finalTotal,
+            };
+        });
     };
 
-    clearCart = (id) => {
-        console.log('cart cleard');
-    }
+    clearCart = () => {
+        let tempCart = this.state.cart;
+        tempCart.map(item => {
+            item.count = 0;
+            item.inCart = false;
+        });
+        this.setState(() => {
+            return {
+                cart: [],
+                cartSubTotal: 0,
+                cartTax: 0,
+                cartTotal: 0,
+            };
+        });
+    };
 
     render(){
         return (

@@ -9,6 +9,8 @@ export const storeProducts = [
         inCart: false,
         count: 0,
         total: 0,
+        tax: 99,
+        finalTax: 0,
     },
     {
         id: 2,
@@ -20,6 +22,8 @@ export const storeProducts = [
         inCart: false,
         count: 0,
         total: 0,
+        tax: 199,
+        finalTax: 0,
     },
     {
         id: 3,
@@ -31,6 +35,8 @@ export const storeProducts = [
         inCart: false,
         count: 0,
         total: 0,
+        tax: 499,
+        finalTax: 0,
     },
     {
         id: 4,
@@ -42,6 +48,8 @@ export const storeProducts = [
         inCart: false,
         count: 0,
         total: 0,
+        tax: 999,
+        finalTax: 0,
     }
 ];
 
@@ -55,4 +63,6 @@ export const detailProduct = {
     inCart: false,
     count: 0,
     total: 0,
+    tax: 999,
+    finalTax: 0,
 }

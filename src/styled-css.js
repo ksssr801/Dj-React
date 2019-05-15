@@ -7,10 +7,12 @@ background: transparent;
 border:0.04rem solid var(--lightBlue);
 border-color: ${props => 
     props.cart ? "var(--mainYellow)" : 
-    props.backToProd ? "var(--lightBlue)" : "var(--lightBlue)"};
+    props.backToProd ? "var(--lightBlue)" : 
+    props.clearCart ? "var(--mainRed)" : "var(--lightBlue)"};
 color: ${props => 
     props.cart ? "var(--mainYellow)" : 
-    props.backToProd ? "var(--lightBlue)" : "var(--lightBlue)"};
+    props.backToProd ? "var(--lightBlue)" : 
+    props.clearCart ? "var(--mainRed)" : "var(--lightBlue)"};
 border-radius: 0.5rem;
 padding: 0.2rem 0.5rem;
 cursor: pointer;
@@ -19,11 +21,13 @@ transition: all 0.5s ease-in-out;
 &:hover{
     background: ${props => 
         props.cart ? "var(--mainYellow)" : 
-        props.backToProd ? "var(--lightBlue)" : "var(--mainWhite)"};
+        props.backToProd ? "var(--lightBlue)" : 
+        props.clearCart ? "var(--mainRed)" : "var(--mainWhite)"};
     color: darkgreen;
     color: ${props => 
         props.cart ? "var(--mainDark)" : 
-        props.backToProd ? "var(--mainBlue)" : "darkgreen"};
+        props.backToProd ? "var(--mainBlue)" : 
+        props.clearCart ? "var(--mainWhite)" : "darkgreen"};
 }
 &:focus{
     outline: none;

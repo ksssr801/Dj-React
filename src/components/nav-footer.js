@@ -27,7 +27,7 @@ class NavBar extends Component {
 class FooterBar extends Component {
     render() {
         return (
-            <footer className="footer sticky-bottom text-capitalize text-gray text-center py-2 store-footer">
+            <footer className="footer sticky-bottom text-capitalize text-gray text-center py-2 store-footer mt-5">
                 <div>reactJS version : {React.version}</div>
                 <div><i className="far fa-copyright"> Kr Sahastranshu</i></div>
             </footer>

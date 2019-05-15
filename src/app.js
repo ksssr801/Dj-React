@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavBar, FooterBar } from './components/nav-footer';
 import ProductList from './components/product-list';
 import Details from './components/details';
-import Cart from './components/cart';
+import Cart from './components/cart/cart';
 // import Product from './components/product';
 import Default from './components/default';
 import Modal from './components/modal';

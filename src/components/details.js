@@ -40,7 +40,7 @@ export default class Details extends Component {
                                     onClick={ () => {
                                         value.addToCart(id);
                                         value.openModal(id);
-                                    }}>
+                                    } }>
                                         { inCart ? "in cart" : "add to cart"}
                                     </BtnContainer>
                                     {/* </Link> */}

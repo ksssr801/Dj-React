@@ -112,6 +112,11 @@ class ProductProvider extends Component {
             if (item.id === id) {
                 if (item.count === 1) {
                     this.removeItem(id);
+                    for (var index in tempCart) {
+                        tempSubTotal = (tempCart[index].count * tempCart[index].price);
+                        tempTax = (tempCart[index].count * tempCart[index].tax);
+                    }
+                    finalTotal = (tempSubTotal + tempTax);
                 }
                 else {
                     item.count -= 1;
@@ -133,21 +138,22 @@ class ProductProvider extends Component {
     };
 
     removeItem = (id) => {
-        let finalTotal = 0;
-        let tempSubTotal = this.state.cartSubTotal;
-        let tempTax = this.state.cartTax;
+        let tempSubTotal = 0;
+        let tempTax = 0;
         let tempCart = this.state.cart;
         tempCart.map(item => {
             var index = tempCart.indexOf(item)
             if (item.id === id) {
-                tempSubTotal = tempSubTotal - (item.count * item.price);
-                tempTax = tempTax - (item.count * item.tax);
                 item.count = 0;
                 item.inCart = false;
                 tempCart.splice(index, 1);
-                finalTotal = tempSubTotal + tempTax;
             };
         });
+        for (var index in tempCart) {
+            tempSubTotal = tempSubTotal + (tempCart[index].count * tempCart[index].price);
+            tempTax = tempTax + (tempCart[index].count * tempCart[index].tax);
+        }
+        var finalTotal = (tempSubTotal + tempTax);
         this.setState(() => {
             return {
                 cart: tempCart,

@@ -1,5 +1,6 @@
-/node_modules
-/.idea
+ReactProj/node_modules
+ReactProj/.idea
 src/.env.development
 .idea/workspace.xml
 README.md
+

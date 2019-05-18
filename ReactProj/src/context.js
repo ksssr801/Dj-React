@@ -18,6 +18,7 @@ class ProductProvider extends Component {
     componentDidMount() {
         this.setProducts();
     }
+
     setProducts = () => {
         let tempProducts = [];
         storeProducts.forEach(item => {

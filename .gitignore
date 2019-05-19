@@ -1,6 +1,6 @@
-ReactProj/node_modules
-ReactProj/.idea
 src/.env.development
-.idea/workspace.xml
+.idea
 README.md
 
+frontend/node_modules
+backend/djreactenv

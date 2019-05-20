@@ -15,8 +15,8 @@ class PhoneStore(models.Model):
     total = models.IntegerField()
     tax = models.IntegerField()
 
-    def __str__(self):
-        return self.id
+    # def __str__(self):
+    #     return self.title
         
-    class Meta:
-        db_table = 'tblproducts'
+    # class Meta:
+    #     db_table = 'tblproducts'

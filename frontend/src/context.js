@@ -1,6 +1,13 @@
 import React, { Component} from 'react';
-import { detailProduct } from './data';
+import { storeProducts, detailProduct } from './data';
 import axios from 'axios';
+// import getCookie from 'js-cookie';
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+// axios.defaults.withCredentials = true
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const ProductContext = React.createContext(); // Need to read about Context API
 
@@ -21,15 +28,35 @@ class ProductProvider extends Component {
     }
 
     setProducts = () => {
-        // var params = {id: 2};
-        axios.get('http://localhost:8080/api/phonestore/products/')
-            .then(res => {
-                console.log(res);
-                this.setState(() => {
-                    return {products: res.data};
-                });
+        let tempProducts = [];
+        axios.post('http://localhost:8080/api/phonestore/products/')
+        .then(res => {
+            res.data.forEach(item => {
+                const singleItem = {...item};
+                tempProducts = [...tempProducts, singleItem];
             })
+            // Need to read about State
+            this.setState(() => {
+                return {products: tempProducts};
+            });
+        })
+        .catch(error => {
+            console.log('error : ',error)
+        });
     };
+
+    // setProducts = () => {
+    //     axios.post('http://localhost:8080/api/phonestore/products/')
+    //     .then(res => {
+    //         console.log(res);
+    //         this.setState(() => {
+    //             return {products: res.data};
+    //         });
+    //     })
+    //     .catch(error => {
+    //         console.log('error==>>',error)
+    //     });
+    // };
 
     getItem = (id) => {
         const product = this.state.products.find(item => item.id === id);

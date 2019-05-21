@@ -2,18 +2,16 @@ from phonestore.models import PhoneStore
 from .serializers import PhoneStoreSerializer
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from rest_framework.decorators import action, list_route, api_view, permission_classes
-from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie, csrf_exempt
-from django.contrib.auth import authenticate, login
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import action
 
 class PhoneStoreViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     queryset = PhoneStore.objects.all()
     serializer_class = PhoneStoreSerializer
 
-    @action(methods=['post'], detail=False, url_path='products')
+    @action(methods=['get'], detail=False, url_path='products')
     def get_product_list(self, request):
-        # print "request==>",request.data
         dataset = PhoneStore.objects.values()
         response = [
             {

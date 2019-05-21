@@ -24,12 +24,25 @@ class ProductProvider extends Component {
     }
     // Need to read about componentDidMount()
     componentDidMount() {
-        this.setProducts();
+        this.generateToken();
     }
 
-    setProducts = () => {
+    generateToken = () => {
+        let username = 'sahas';
+        let password = 'sahas123';
+        axios.post('http://localhost:8080/api-token-auth/', {'username': `${username}`, 'password': `${password}`})
+        .then(result => {
+            this.setProducts(result.data.token);
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
+    setProducts = (token) => {
         let tempProducts = [];
-        axios.post('http://localhost:8080/api/phonestore/products/')
+        var headers = {'Authorization' : `Token ${token}`}
+        axios.get('http://localhost:8080/api/phonestore/products/', { headers })
         .then(res => {
             res.data.forEach(item => {
                 const singleItem = {...item};
@@ -44,19 +57,6 @@ class ProductProvider extends Component {
             console.log('error : ',error)
         });
     };
-
-    // setProducts = () => {
-    //     axios.post('http://localhost:8080/api/phonestore/products/')
-    //     .then(res => {
-    //         console.log(res);
-    //         this.setState(() => {
-    //             return {products: res.data};
-    //         });
-    //     })
-    //     .catch(error => {
-    //         console.log('error==>>',error)
-    //     });
-    // };
 
     getItem = (id) => {
         const product = this.state.products.find(item => item.id === id);

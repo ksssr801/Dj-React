@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', # Added
+    'rest_framework.authtoken', # Added
     'phonestore', # Added
     'corsheaders', # Added
 ]
@@ -128,8 +129,16 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    #     'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
 }
 
 CORS_ORIGIN_ALLOW_ALL = True # Added
+
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_HEADER_NAME = 'XSRF-TOKEN'

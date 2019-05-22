@@ -4,9 +4,11 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 class PhoneStoreViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
+    # authentication_classes = (JSONWebTokenAuthentication,)
     queryset = PhoneStore.objects.all()
     serializer_class = PhoneStoreSerializer
 

@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import { storeProducts, detailProduct } from './data';
 import axios from 'axios';
+import { userCredential } from './config';
 // import getCookie from 'js-cookie';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -28,9 +29,7 @@ class ProductProvider extends Component {
     }
 
     generateToken = () => {
-        let username = 'sahas';
-        let password = 'sahas123';
-        axios.post('http://localhost:8080/api-token-auth/', {'username': `${username}`, 'password': `${password}`})
+        axios.post('http://localhost:8080/token-auth/', userCredential)
         .then(result => {
             this.setProducts(result.data.token);
         })
@@ -40,9 +39,10 @@ class ProductProvider extends Component {
     }
 
     setProducts = (token) => {
+        // console.log('token==>>',token)
         let tempProducts = [];
-        var headers = {'Authorization' : `Token ${token}`}
-        axios.get('http://localhost:8080/api/phonestore/products/', { headers })
+        var headers = {'Authorization' : `JWT ${token}`}
+        axios.get('http://localhost:8080/myapi/phonestore/products/', { headers })
         .then(res => {
             res.data.forEach(item => {
                 const singleItem = {...item};
